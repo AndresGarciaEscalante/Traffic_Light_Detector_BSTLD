@@ -43,7 +43,7 @@ def show_label_images(input_yaml, output_folder=None):
                           (ir(box['x_max']), ir(box['y_max'])),
                           (0, 255, 0))
 
-        cv2.imshow('labeled_image', image)
+       # cv2.imshow('labeled_image', image)
         cv2.waitKey(10)
         if output_folder is not None:
             cv2.imwrite(os.path.join(output_folder, str(i).zfill(10) + '_'

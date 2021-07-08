@@ -11,7 +11,7 @@ import os
 import sys
 import yaml
 
-from bstld.tf_object_detection import constants
+from tf_object_detection import constants
 
 
 def get_all_labels(input_yaml, riib=False, clip=True):
