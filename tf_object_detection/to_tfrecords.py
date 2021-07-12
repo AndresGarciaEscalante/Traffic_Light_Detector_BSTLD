@@ -34,8 +34,23 @@ import tqdm
 
 # https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
 from object_detection.utils import dataset_util
-from bstld.read_label_file import get_all_labels
-from bstld.tf_object_detection import constants
+
+import sys
+  
+# getting the name of the directory
+# where the this file is present.
+current = os.path.dirname(os.path.realpath(__file__))
+  
+# Getting the parent directory name
+# where the current directory is present.
+parent = os.path.dirname(current)
+  
+# adding the parent directory to 
+# the sys.path.
+sys.path.append(parent)
+
+from read_label_file import get_all_labels
+from tf_object_detection import constants
 
 
 def label_id(label_string):
@@ -74,7 +89,7 @@ def create_object_detection_tfrecords(labels, tfrecords_path, dataset_folder, se
     """
 
     shuffle(labels)
-    writer = tf.python_io.TFRecordWriter(tfrecords_path)
+    writer = tf.io.TFRecordWriter(tfrecords_path)
     for label in tqdm.tqdm(labels, desc='Creating {}-set'.format(set_name)):
         image_path = os.path.join(dataset_folder, label['path'])
         image = cv2.imread(image_path)
