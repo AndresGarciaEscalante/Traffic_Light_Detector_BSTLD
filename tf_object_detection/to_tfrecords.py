@@ -88,7 +88,7 @@ def create_object_detection_tfrecords(labels, tfrecords_path, dataset_folder, se
         dataset_folder: path to bstld folder, must include rgb directory
     """
 
-    shuffle(labels)
+    #shuffle(labels)
     writer = tf.io.TFRecordWriter(tfrecords_path)
     for label in tqdm.tqdm(labels, desc='Creating {}-set'.format(set_name)):
         image_path = os.path.join(dataset_folder, label['path'])
