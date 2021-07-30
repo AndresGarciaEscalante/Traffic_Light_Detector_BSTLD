@@ -1,49 +1,219 @@
-## Bosch Small Traffic Lights Dataset
+# Traffic Light Object Detection using Bosch Small Traffic Light Dataset
 
-This repository contains some scripts to get started with the Bosch Small Traffic Lights Dataset (BSTLD).
-Contributions are very welcome. Simply create a pull request.
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-### Dataset
-The dataset can be downloaded [here](https://hci.iwr.uni-heidelberg.de/node/6132). A preview of the dataset is available on YouTube by clicking on the image.
 
-[![BSTLD Preview](https://github.com/bosch-ros-pkg/bstld/blob/master/images/dataset_sample.jpg)](https://youtu.be/P7j6XFmImAg)
 
-Instructions on how to unzip *.zip.00X files can, for example, be found at https://hiro.bsd.uchicago.edu/node/3168
-Update label files are in the label_files folder.
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-To convert Bosch Small Traffic Lights Dataset Annotations to Pascal VOC
-Format
+  <h3 align="center">Best-README-Template</h3>
+
+  <p align="center">
+    An awesome README template to jumpstart your projects!
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+<!--[![Product Name Screen Shot][product-screenshot]](https://example.com -->
+
+Traffic lights are control flow devices that guarantee security for drivers. Due to the lack of concentration from the drivers, which might cause car accidents. Therefore, this project aims to contribute to with the detection an classificaction of traffic lights using state-of-the-art Convolutional Neural Network. 
+
+This project is the first part of my master thesis from Tecnologico de Monterrey, the name of the thesis is ***Emergency Brake Driver Assistant System from Traffic Lights using Deep Learning and Fuzzy Logic.***
+
+***Important:*** The [Bosch Small Traffic Light Dataset](https://github.com/bosch-ros-pkg/bstld) was used as a start point for the project.
+
+## Built with
+### Environment
+The project was built using:
+* Tensorflow 2.3.1
+* CUDA 10.1
+* cuDNN 7.6
+* Python 3.6.8
+* Ubuntu 16.04
+* Docker 18.09.2
+
+***Important:*** The Environment configuration was setup based on the criteria of [Compatibility of Tensorflow Linux GPU](https://www.tensorflow.org/install/source#tested_build_configurations)
+
+### Setup the Environment
+### 1. Docker image
+For this project, I used the docker images provided by the [NGC](https://ngc.nvidia.com/catalog). The docker image that I used for the project is [Tensorflow](https://ngc.nvidia.com/catalog/containers/nvidia:tensorflow/tags) and look for the tag ***19.07-py3***: 
 
 ```
- python bosch_to_pascal.py input_yaml out_folder
+docker pull nvcr.io/nvidia/tensorflow:19.07-py3
 ```
 
-### Sample Detections
+Once the image is pulled, then you can run the container. The command that I used to execute the container is:
 
-A sample detection based on an adapted Yolo v1 model run on crops can be viewed at
-[![Sample Detector View](https://github.com/bosch-ros-pkg/bstld/blob/master/images/yolo_detection_sample.jpg)](https://youtu.be/EztVEj2KnXk)]
-
-### Results
-
-| Method | Execution time | weighted mAP | mAP | Off | Green | Yellow | Red | External data | Link |
-| ------ | -------------- | ------------ | --- | --- | ----- | ------ | --- | ------------- | ---- |
-| Baseline | <100 ms | 0.36 |  |  |  |  |  | no |https://ieeexplore.ieee.org/document/7989163/|
-| Hierarchical Deep Architecture | ~150 ms | 0.53 |  |  |  |  |  | no | https://arxiv.org/abs/1806.07987 |
-| SSD Mobilenet V1 | 38 ms | 0.60 | 0.41 | 0.00 | 0.68 | 0.41 | 0.55 | no | https://github.com/bosch-ros-pkg/bstld/blob/master/tf_object_detection/configs/ssd_mobilenet_v1.config |
-| Faster RCNN NAS-A | ~1560s | 0.65 | 0.43 | 0.00 |  0.71  | 0.33 | 0.66 | no | https://github.com/bosch-ros-pkg/bstld/blob/master/tf_object_detection/configs/faster_rcnn_nas.config  |
-
-Values are self-reported. The evaluation is performed on the test-set without empty frames. For different goals, e.g. using minimal training data, using external data only, or others, new tables can be created. We specifically encourage non-conventional approaches.
-Please make sure not to incorporate the test-set into your training, which includes multiple evaluations for different checkpoints of the same method. We understand that there can be larger variations between the different class average precisions, specifically due to the biased distribution. We will try to incorporate variations in results of the same method once reported.
-
-### Citation
 ```
-In case of publication based on this dataset, please cite
-@inproceedings{behrendt2017deep,
-  title={A deep learning approach to traffic lights: Detection, tracking, and classification},
-  author={Behrendt, Karsten and Novak, Libor and Botros, Rami},
-  booktitle={Robotics and Automation (ICRA), 2017 IEEE International Conference on},
-  pages={1370--1377},
-  year={2017},
-  organization={IEEE}
-}
+nvidia-docker run --name TL_OD_V4 -v /raid/home/A01375067/Traffic_Light_Detector_BSTLD:/workspace -it -p 8888:8888 nvcr.io/nvidia/tensorflow:19.07-py3
 ```
+
+***Important:*** You can change the name of the container, the path of the files that will be included in the docker container, and the port.
+
+### 2. Install dependencies
+Once you are inside the container, execute the ```setup.py``` to install all the dependencies:
+
+```
+python setup.py
+```
+
+### 3. Scripts that provide information of the dataset 
+To provide information of the dataset. Make sure to use the following commands:
+
+Number of Annotations, images, classes, size of images, and more:
+
+```
+python dataset_stats.py input_yaml
+```
+
+***Important:*** Instead of the ```input_yaml``` provide the path of the yaml files that will be evaluated
+
+Display the ground truth in a video:
+```
+python write_label_images input.yaml [output_folder]
+```
+
+***Important:*** Instead of the ```input_yaml``` provide the path of the yaml files that will be evaluated, and provide the path where the sequence of images will be stored ```[output_folder]```
+
+### 4. Scripts for training a CNN Model
+The following scripts are a must to train a CNN model, please execute them in order.
+
+#### 4.1 Dataset to TFrecords
+To convert the dataset to TFrecords execute the following command:
+```
+python to_tfrecords.py --train_yaml ../label_files/train.yaml --test_yaml ../label_files/test.yaml --additional_yaml ../label_files/additional_train.yaml --dataset_folder ../label_files
+```
+
+After the script is executed, 3 tfrecords will be created ```train.tfrecord, test.tfrecord, valid.tfrecord```.
+
+***Important:*** The script was modified to not suffle the images of the tfrecords.
+
+#### 4.2 Pretrained Model
+Before start training a model, make sure to download a pretrainted from [tensorflow2_pretrained_models](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md). Once you have selected the desired model you can downloaded executing the following command:
+```
+wget link_to_the_pretrained_model
+```
+
+To unzip the model use the following command:
+```
+tar -xvzf replace.tar.gz
+```
+
+***Important:*** The commands shown above are only used to test new models. If you want to test the model I trained please omit this step.
+
+#### 4.3 Config Files
+There are several ***config files*** that are supported by [tensorflow2_config files](https://github.com/tensorflow/models/tree/master/research/object_detection/configs/tf2). 
+
+***Important:*** Do not forget to modify the paths from the ```train and valid tfrecords```, the ```.pbtxt``` file, and the path from the ***pretrained model***. Use the ***config files*** provided in the repo as a guide for filling this paths.
+
+#### 4.4 Train the model 
+For this section, we need to use three terminals. The first one is for training the model and it uses the ```train.tfrecord```, the second terminal is for validation and it uses the ```valid.tfrecord```. The last terminal is to keep track of the ***losses, mAP, precision, recall, learning rate***. Please execute the following commands at the same time:
+
+#### Terminal 1
+```
+CUDA_VISIBLE_DEVICES=6 python model_main_tf2.py --model_dir=/workspace/tf_object_detection/training/experiments/models4 --pipeline_config_path=/workspace/tf_object_detection/training/experiments/models4/ssd_efficient_1024.config
+```
+#### Terminal 2
+```
+CUDA_VISIBLE_DEVICES=3 python model_main_tf2.py --model_dir=/workspace/tf_object_detection/training/experiments/models4 --pipeline_config_path=/workspace/tf_object_detection/training/experiments/models4/ssd_efficient_1024.config --checkpoint_dir=/workspace/tf_object_detection/training/experiments/models4
+```
+#### Terminal 3
+```
+tensorboard --bind_all --port 8888 --logdir=training
+```
+
+***Important:*** To stop the training just ```ctrl + c```.
+
+### 5. Scripts for testing the trained model
+To test the trained model, please execute the following commands:
+
+```
+CUDA_VISIBLE_DEVICES=6 python exporter_main_v2.py --input_type image_tensor --pipeline_config_path /workspace/tf_object_detection/training/experiments/models4/ssd_efficient_1024.config --trained_checkpoint_dir /workspace/tf_object_detection/training/experiments/models4 --output_directory /workspace/tf_object_detection/training/experiments/models4/experiment1
+```
+
+```
+CUDA_VISIBLE_DEVICES=6 python inference_video.py --labelmap_path /workspace/tf_object_detection/label_maps/bstld_label_map.pbtxt --model_path /workspace/tf_object_detection/training/experiments/models4/experiment1/saved_model --tf_record_path /workspace/tf_object_detection/tfrecords/test/test.tfrecords --config_path /workspace/tf_object_detection/training/experiments/models4/ssd_efficient_1024.config --output_path animation.mp4
+```
+
+***Important:*** The duration of the video can be modified by modifying the line 96 (frames) ```inference_video.py```. For more details refer to [video_configuration](https://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/) 
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
+
