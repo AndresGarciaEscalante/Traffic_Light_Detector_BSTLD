@@ -8,12 +8,11 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
+<!--[![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+[![MIT License][license-shield]][license-url]-->
 
 
 
@@ -21,26 +20,8 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="gif/efficientDet.gif" alt="Logo" width="600" height="600">
   </a>
-
-  <h3 align="center">Best-README-Template</h3>
-
-  <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
-  </p>
-</p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -55,23 +36,19 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#setup-the-environment">Setup the Environment</a></li>
+        <li><a href="#scripts"> Execute Scripts</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
+
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+# About The Project
 
 <!--[![Product Name Screen Shot][product-screenshot]](https://example.com -->
 
@@ -93,7 +70,8 @@ The project was built using:
 
 ***Important:*** The Environment configuration was setup based on the criteria of [Compatibility of Tensorflow Linux GPU](https://www.tensorflow.org/install/source#tested_build_configurations)
 
-### Setup the Environment
+# Getting Started
+## Setup the Environment
 ### 1. Docker image
 For this project, I used the docker images provided by the [NGC](https://ngc.nvidia.com/catalog). The docker image that I used for the project is [Tensorflow](https://ngc.nvidia.com/catalog/containers/nvidia:tensorflow/tags) and look for the tag ***19.07-py3***: 
 
@@ -115,7 +93,7 @@ Once you are inside the container, execute the ```setup.py``` to install all the
 ```
 python setup.py
 ```
-
+## Scripts 
 ### 3. Scripts that provide information of the dataset 
 To provide information of the dataset. Make sure to use the following commands:
 
@@ -213,7 +191,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/othneildrew/Best-README-Template/issues
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
 
